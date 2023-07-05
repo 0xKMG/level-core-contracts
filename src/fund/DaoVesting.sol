@@ -115,7 +115,7 @@ contract LevelDaoVesting {
             (_amount != 0 && _amount <= claimable_LVL()),
             "LevelDaoVesting::claim_LVL: invalid amount"
         );
-        claimedAmount += _amount;
+        claimed_amount += _amount;
         LVL.safeTransfer(investor, _amount);
         emit Withdrawn(investor, _amount);
     }
@@ -156,7 +156,7 @@ contract LevelDaoVesting {
 
     function emergency_withdraw() external onlyOwner {
         uint256 _amount = LVL.balanceOf(address(this));
-        claimedAmount += _amount;
+        claimed_amount += _amount;
         LVL.safeTransfer(investor, _amount);
         emit Withdrawn(investor, _amount);
     }
